@@ -104,7 +104,7 @@ var endGame = function()  {
   clearTimeout(main);
   $('.timestamp').html(initTime);
   setTimeout(function(){
-    $('.gameover').toggleClass('showGameOver')
+    $('.gameover').removeClass('showGameOver')
   }, 1000);
 
 };
@@ -143,7 +143,7 @@ $(document).on('keydown', function( e ){
 $play.on('click',function(){
   game.init();
   $('body').removeClass('status-intro status-end').addClass('status-playing')
-  $('.gameover').toggleClass('.showGameOver')
+  $('.gameover').addClass('showGameOver')
 });
 
 $yes.on('click',function(){
