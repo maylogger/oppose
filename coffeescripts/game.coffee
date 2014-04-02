@@ -144,7 +144,7 @@ class game
 
   getQuiz: ->
     $showContent.removeClass('in')
-    numbers = if @point < 1 then @random(3) else if @point < 3 then @random(8) else @random(13)
+    numbers = if @point < 5 then @random(3) else if @point < 10 then @random(8) else @random(13)
     quizStr = ''
     for i in [0..numbers] by 1
       quizStr += '反'
