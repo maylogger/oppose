@@ -23,15 +23,17 @@ var randomText = function(){
     for (var i = numbers ; i >= 0; i--) {
       str += '反';
     };
-    if( numbers % 2 == 0 ){
+    if ( numbers % 2 == 0 ){
       checkNumb = 0
       // $('.final').html('反');
-    }else{
+    } else {
       checkNumb = 1
       // $('.final').html('挺');
     }
     $('.showContent').html(str+'服貿').parent().bigtext({maxfontsize: 100});
-    $('.out').removeClass('out').addClass('in');
+    setTimeout(function(){
+      $('.out').removeClass('out').addClass('in');
+    },300);
   }
 };
 
@@ -49,7 +51,7 @@ var startGame = function()  {
       } else if ( point < 6 ) {
         comment += "白狼掏掏，再挑戰一次"
       } else if ( point < 7 ) {
-        comment += "抵抗白衫軍攻勢！再玩一次！"
+        comment += "快抵抗白衫軍攻勢！再玩一次！"
       } else if ( point < 8 ) {
         comment += "你的偷懶害立法院失守了"
       } else if ( point < 9 ) {
