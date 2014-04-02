@@ -72,7 +72,7 @@ class game
       $gameover.removeClass('showGameOver')
     , 1000)
   getQuiz: ->
-    $showContent.removeClass('in').addClass('out')
+    $showContent.removeClass('in')
     numbers = if @point < 9  then @random(4) else @random(13)
     quizStr = ''
     for i in [0..numbers] by 1
@@ -80,7 +80,7 @@ class game
     @is_anti = if numbers % 2 == 0 then true else false
     $showContent.html("#{quizStr}服貿").parent()._bigtext()
     setTimeout( ->
-      $showContent.removeClass('out').addClass('in')
+      $showContent.addClass('in')
     , 300 )
   getComment: ->
     comment = '點評：'
