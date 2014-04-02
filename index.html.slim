@@ -2,8 +2,8 @@
   .container.text-center
 
     .intro-text
-      h1.bigtext: span 反*n 服貿
-      p.bigtext
+      h1.bigtext data-maxfontsize="120" data-minfontsize="14": span 反*n 服貿
+      p.bigtext data-maxfontsize="120" data-minfontsize="14"
         span 按下開始審查後
         span 30 秒內必須答出
         span 接下來畫面的反*n服貿
@@ -14,7 +14,7 @@
   = render "game"
 
 .gameover.view.showGameOver
-  .quiz.bigtext.text-center
+  .quiz.bigtext.text-center data-maxfontsize="120"
     span.shake.shake-constant.shake-hard Game Over
 
 .end.view
