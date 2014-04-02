@@ -42,13 +42,13 @@ var main = null
 
 var startGame = function()  {
   main = setTimeout(function(){
-    if ( initTime > 0 ){
+    if ( initTime == 0 ){
+      clearTimeout(main);
+      game.end();
+    }else if ( initTime > 0 ){
       initTime = initTime - 1;
       $('.timestamp').html(initTime);
       startGame();
-    }else if (initTime == 0){
-      clearTimeout(main);
-      game.end();
     }
   },1000)
 };
@@ -102,7 +102,7 @@ var endGame = function()  {
   clearTimeout(main);
   $('.timestamp').html(initTime);
   setTimeout(function(){
-    $('.gameover').toggleClass('in')
+    $('.gameover').toggleClass('showGameOver')
   }, 1000);
 
 };
