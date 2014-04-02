@@ -14,25 +14,28 @@ var comment = "點評：";
 $('.timestamp').html(initTime);
 
 var randomText = function(){
-  $('.in').removeClass('in').addClass('out');
-  if (initTime > 0){
-    clicked = 0;
-    // var numbers = Math.ceil(Math.random()*(20-0));
-    var numbers = ( point < 5 ) ? Math.ceil(Math.random()*(4-0)) : Math.ceil(Math.random()*(13-0));
-    var str = '';
-    for (var i = numbers ; i >= 0; i--) {
-      str += '反';
-    };
-    if( numbers % 2 == 0 ){
-      checkNumb = 0
-      // $('.final').html('反');
-    }else{
-      checkNumb = 1
-      // $('.final').html('挺');
+  $('.in').removeClass('in').addClass('out')
+
+  setTimeout( function(){
+    if (initTime > 0){
+      clicked = 0;
+      // var numbers = Math.ceil(Math.random()*(20-0));
+      var numbers = ( point < 5 ) ? Math.ceil(Math.random()*(4-0)) : Math.ceil(Math.random()*(13-0));
+      var str = '';
+      for (var i = numbers ; i >= 0; i--) {
+        str += '反';
+      };
+      if( numbers % 2 == 0 ){
+        checkNumb = 0
+        // $('.final').html('反');
+      }else{
+        checkNumb = 1
+        // $('.final').html('挺');
+      }
+      $('.showContent').html(str+'服貿').parent().bigtext({maxfontsize: 100});
     }
-    $('.showContent').html(str+'服貿').parent().bigtext({maxfontsize: 100});
     $('.out').removeClass('out').addClass('in');
-  }
+  }, 500);
 };
 
 var startGame = function()  {

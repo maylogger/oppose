@@ -49,16 +49,16 @@ $relative-font-sizing: false;
     display: block;
     margin-top: -.5em;
     &.out {
-      visibility: hidden;
+      opacity: 0;
       @include transform( scale(0) );
     }
     &.in {
-      visibility: visible;
+      opacity: 1;
       @include transition( transform .1s );
       @include transform( scale(1) );
     }
     // animate
-    @include transition( transform 2s 1s, opacity .3s 1s);
+    @include transition( transform .5s, opacity .3s);
     .end & {
       @include transform( scale(0) rotate(-720deg)  );
       opacity: 0;
