@@ -105,7 +105,24 @@ var game = {
   }
 };
 
-$('.play').on('click',function(){
+$yes  = $('.btn-yes')
+$no   = $('.btn-no')
+$play = $('.play')
+
+
+$(document).on('keydown', function( e ){
+  var key = e.which;
+  switch( key ) {
+    case 37: //left
+      $no.trigger('click');
+      break;
+    case 39: // right
+      $yes.trigger('click');
+      break;
+  }
+})
+
+$play.on('click',function(){
   if (initTime == 30){
     game.init();
     $('body').removeClass('status-intro status-end').addClass('status-playing')
@@ -115,7 +132,7 @@ $('.play').on('click',function(){
   }
 });
 
-$('.btn-yes').on('click',function(){
+$yes.on('click',function(){
   if( checkNumb == 1 && clicked == 0 ) {
     point ++;
     clicked = 1;
@@ -125,7 +142,7 @@ $('.btn-yes').on('click',function(){
   }
 })
 
-$('.btn-no').on('click',function(){
+$no.on('click',function(){
   if( checkNumb == 0 && clicked == 0 ) {
     point ++;
     clicked = 1;
