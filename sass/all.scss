@@ -85,6 +85,14 @@ $relative-font-sizing: false;
   .btn + .btn {
     margin-left: .5em;
   }
+  .playing & {
+    .btn-yes .glyphicon {
+      padding: 0 0 0 5px;
+    }
+    .btn-no .glyphicon {
+      padding: 0 5px 0 0;
+    }
+  }
   // animate
   @include transition( transform 1s );
   .end & {
