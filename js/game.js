@@ -4,7 +4,7 @@
 
   settings = {
     limitTime: 60,
-    countDown: 700,
+    countDown: 600,
     levels: {
       1: ['已證實智商與馬英九相同', '好了，下去領 500', '你是黨工？', '加油，好嗎？', '雨八 & 令刀'],
       5: ['你的偷懶害立法院失守了', '白衫軍攻勢太強！', '請注意務必逐題審查！', '快重審！國會需要你！', '有沒有這麼強？沒有！'],
@@ -150,7 +150,7 @@
       var i, numbers, quizStr, _i;
 
       $showContent.removeClass('in');
-      numbers = this.point < 5 ? this.random(5) : this.point < 10 ? this.random(8) : this.random(13);
+      numbers = this.point < 5 ? this.random(5) : this.point < 10 ? this.random(6) + 2 : this.random(8) + 5;
       quizStr = '';
       for (i = _i = 0; _i <= numbers; i = _i += 1) {
         quizStr += '反';
