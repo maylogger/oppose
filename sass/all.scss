@@ -1,4 +1,6 @@
 $relative-font-sizing: false;
+$bg: #425b75;
+$color: #f7f9f9;
 
 @import "compass";
 
@@ -82,7 +84,7 @@ $relative-font-sizing: false;
   @include padding-leader(1);
   @include padding-trailer(1);
   padding-bottom: 24px;
-  background: rgba(white,.75);
+  background: rgba($bg,.75);
   .btn + .btn {
     margin-left: .5em;
   }
@@ -92,6 +94,14 @@ $relative-font-sizing: false;
     }
     .btn-no .glyphicon {
       padding: 0 5px 0 0;
+    }
+  }
+  .end & {
+    .btn.btn-inverse {
+      background: darken($bg, 20%);
+      &:hover {
+        background: darken($bg, 15%);
+      }
     }
   }
   // animate
@@ -109,7 +119,7 @@ $relative-font-sizing: false;
   bottom: 0;
   left: 0;
   width: 100%;
-  background: rgba(#ccc,.1);
+  background: rgba($color,.1);
   font-size: 24px;
   line-height: 1.1;
   padding: 5px 10px;
@@ -143,6 +153,8 @@ html, body {
   overflow: hidden;
   -webkit-text-size-adjust: 100%;
   -webkit-font-smoothing: antialiased;
+  background: $bg;
+  color: $color;
 }
 
 .view {
@@ -165,11 +177,11 @@ html, body {
   @include transform( scale(.7) );
   opacity: 0;
   z-index: 1;
-  background: white;
+  background: $bg;
 }
 
 .end {
-  background: white;
+  background: $bg;
   z-index: 2;
   overflow: hidden;
 }
