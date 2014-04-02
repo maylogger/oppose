@@ -5,7 +5,14 @@ $.fn._bigtext = ->
 
 settings =
   limitTime: 60
-  countDown: 700
+  countDown: 10
+  levels:
+    1: ['智商跟馬英九相同。']
+    5: ['你的偷懶害立法院失守了', '白衫軍攻勢太強！<br>再玩一次！', '請注意務必逐題審查！', '快出門！<br>立法院需要你的支援！']
+    10: ['Over My Dead Body', '涂明義救援中！', '公聽會有辦等於沒辦！', '臉書被檢舉照片太醜<br>王炳忠：言語霸凌!']
+    15: ['「你們不配當中國人」語畢，哄堂大笑', '馬總統民調只有九趴，<br>你們是不是也是多數在霸凌少數', '先立法後答題', '辨識度堪稱糾察隊']
+    20: ['林飛帆表示：陳為廷在我旁邊啦！', '你的分辨率太高，TVBS、中天都做不了假新聞...']
+    999: ['你證明了 Z < B']
 
 $body        = $('body')
 
@@ -91,44 +98,10 @@ class game
     , 300 )
   getComment: ->
     comment = '點評：'
-    if @point < 1
-      comment += '智商跟馬英九相同。'
-    else if @point < 6
-      comment += '你的偷懶害立法院失守了'
-    else if @point < 7
-      comment += '你的偷懶害立法院失守了'
-    else if @point < 8
-      comment += '白衫軍攻勢太強！<br>再玩一次！'
-    else if @point < 9
-      comment += '請注意務必逐題審查！'
-    else if @point < 10
-      comment += '快出門！<br>立法院需要你的支援！'
-    else if @point < 11
-      comment += 'Over My Dead Body'
-    else if @point < 12
-      comment += '涂明義救援中！'
-    else if @point < 13
-      comment += '公聽會有辦等於沒辦！'
-    else if @point < 14
-      comment += '臉書被檢舉照片太醜<br>王炳忠：言語霸凌!'
-    else if @point < 15
-      comment += '「你們不配當中國人」語畢，哄堂大笑'
-    else if @point < 16
-      comment += '馬總統民調只有九趴，<br>你們是不是也是多數在霸凌少數'
-    else if @point < 17
-      comment += '先立法後答題'
-    else if @point < 18
-      comment += '辨識度堪稱糾察隊'
-    else if @point < 19
-      comment += '辨識度堪稱糾察隊'
-    else if @point < 20
-      comment += '辨識度堪稱糾察隊'
-    else if @point < 21
-      comment += '林飛帆表示：陳為廷在我旁邊啦！'
-    else if @point < 25
-      comment += '你的分辨率太高，TVBS、中天都做不了假新聞...'
-    else
-      comment += '你證明了 Z < B'
+    for key, value of settings.levels
+      if @point < key
+        comment = value[ Math.floor( Math.random() * value.length ) ]
+        break
     @showComment comment
   ## functions ###########################################
   showPoint: ->
@@ -146,3 +119,5 @@ class game
       when 'end'
         $body.removeClass('status-playing').addClass('status-end')
 new game()
+
+# console && console.clear()
