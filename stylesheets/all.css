@@ -58,7 +58,12 @@
       -ms-transform: scale(0.5);
       -o-transform: scale(0.5);
       transform: scale(0.5);
-      opacity: 0; }
+      opacity: 0;
+      -webkit-backface-visibility: hidden;
+      -moz-backface-visibility: hidden;
+      -ms-backface-visibility: hidden;
+      -o-backface-visibility: hidden;
+      backface-visibility: hidden; }
     .playing .quiz span.in {
       visibility: visible;
       -webkit-transition: -webkit-transform 0.3s, opacity 0.3s;

@@ -52,6 +52,7 @@ $relative-font-sizing: false;
       visibility: hidden;
       @include transform( scale(.5) );
       opacity: 0;
+      @include backface-visibility(hidden);
     }
     .playing &.in {
       visibility: visible;
