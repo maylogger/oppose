@@ -61,7 +61,7 @@ $relative-font-sizing: false;
       opacity: 1;
     }
     .end & {
-      @include transition( transform 2s 1s, opacity .3s 1s);
+      @include transition( transform 2s 1s, opacity 2s 1s);
       @include transform( scale(0) rotate(-720deg)  );
       opacity: 0;
     }
@@ -94,7 +94,7 @@ $relative-font-sizing: false;
     }
   }
   // animate
-  @include transition( transform 1s );
+  @include transition( transform .5s 3s );
   .end & {
     @include transform( translateY(500px) );
   }
@@ -170,6 +170,18 @@ html, body {
   z-index: 2;
 }
 
+.gameover {
+  background: #a00;
+  z-index: 3;
+  color: white;
+  top: 100%;
+  @include transition(top 1s ease-in );
+  &.in {
+    @include transition(0);
+    top: 0%;
+  }
+}
+
 .status-intro {
   .intro {
     @include transform( translateY(0) );
@@ -178,6 +190,9 @@ html, body {
     visibility: hidden;
   }
   .end {
+    visibility: hidden;
+  }
+  .gameover {
     visibility: hidden;
   }
 }
@@ -191,6 +206,9 @@ html, body {
   .end {
     visibility: hidden;
   }
+  .gameover {
+    visibility: hidden;
+  }
 }
 
 .status-end {
@@ -198,6 +216,9 @@ html, body {
     visibility: hidden;
   }
   .end {
+    visibility: visible;
+  }
+  .gameover {
     visibility: visible;
   }
 }

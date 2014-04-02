@@ -1,5 +1,6 @@
 $('.intro .bigtext').bigtext({maxfontsize: 120, minfontsize:14 });
 $('.end .bigtext').bigtext({maxfontsize: 36, minfontsize:14 });
+$('.gameover .bigtext').bigtext({maxfontsize: 120});
 
 $('#start').on("click", function(){
   $('.status-intro').removeClass('status-intro').addClass('status-playing');
@@ -57,11 +58,11 @@ var endGame = function()  {
   if ( point < 1 ) {
     comment += "智商跟馬英九相同。"
   } else if ( point < 6 ) {
-    comment += "白狼掏掏，再挑戰一次"
-  } else if ( point < 7 ) {
-    comment += "快抵抗白衫軍攻勢！再玩一次！"
-  } else if ( point < 8 ) {
     comment += "你的偷懶害立法院失守了"
+  } else if ( point < 7 ) {
+    comment += "你的偷懶害立法院失守了"
+  } else if ( point < 8 ) {
+    comment += "快抵抗白衫軍攻勢！再玩一次！"
   } else if ( point < 9 ) {
     comment += "請注意務必逐題審查！"
   } else if ( point < 10 ) {
@@ -100,6 +101,10 @@ var endGame = function()  {
   initTime = 30;
   clearTimeout(main);
   $('.timestamp').html(initTime);
+  setTimeout(function(){
+    $('.gameover').toggleClass('in')
+  }, 1000);
+
 };
 
 var game = {
@@ -136,6 +141,7 @@ $(document).on('keydown', function( e ){
 $play.on('click',function(){
   game.init();
   $('body').removeClass('status-intro status-end').addClass('status-playing')
+  $('.gameover').toggleClass('in')
 });
 
 $yes.on('click',function(){
