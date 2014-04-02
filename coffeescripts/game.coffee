@@ -3,16 +3,50 @@
 ################################
 
 settings =
-  limitTime: 6000
-  countDown: 1
-  fixed: 2
+  limitTime: 60 #sec
+  countDown: 700 #millisecond
   levels:
-    1: ['已證實智商與馬英九相同']
-    5: ['你的偷懶害立法院失守了', '白衫軍攻勢太強！<br>再玩一次！', '請注意務必逐題審查！', '快出門！<br>立法院需要你的支援！']
-    10: ['Over My Dead Body', '涂明義救援中！', '公聽會有辦等於沒辦！', '臉書被檢舉照片太醜<br>王炳忠：言語霸凌!']
-    15: ['「你們不配當中國人」語畢，哄堂大笑', '馬總統民調只有九趴，<br>你們是不是也是多數在霸凌少數', '先立法後答題', '辨識度堪稱糾察隊']
-    20: ['林飛帆表示：陳為廷在我旁邊啦！', '你的分辨率太高，TVBS、中天都做不了假新聞...']
-    999: ['你證明了 Z < B']
+    1: [
+      '已證實智商與馬英九相同'
+      '好了，下去領 500'
+      '你是黨工？'
+      '加油，好嗎？'
+      '雨八 & 令刀'
+    ]
+    5: [
+      '你的偷懶害立法院失守了'
+      '白衫軍攻勢太強！'
+      '請注意務必逐題審查！'
+      '快重審！國會需要你！'
+      '有沒有這麼強？沒有！'
+    ]
+    10: [
+      '涂明義救援中！'
+      '公聽會有辦等於沒辦！'
+      '臉書被檢舉照片太醜<br>王偉忠：言語霸凌!'
+      '秋意認為香蕉根本不重要'
+      '戰神姚老師覺得你還可以再強'
+    ]
+    15: [
+      '「你們不配當中國人」<BR>白狼語畢，哄堂大笑'
+      '馬民調只有 9%，<br>你們是不是也是多數在霸凌少數'
+      '先立法，再審查一次！'
+      '~~~~~<a href="https://www.youtube.com/watch?v=yovi51Rqd3Q">歐ver買爹巴底</a>~~~~~'
+    ]
+    20: [
+      '你競爭力超強，根本不需簽服貿'
+      '辨識度堪稱糾察隊'
+      '你的分辨力太高，中天都做不了假新聞...'
+      '你的分辨力太高，TVBS 都做不了假新聞...'
+    ]
+    999: [
+      '林飛帆與陳為廷在一起！'
+      '不動如山，有如金平'
+      '人民都像你一樣強就好了'
+      '大家都像你這麼強，台灣早獨立了'
+      '你證實了服貿應該要重審！'
+      '你證明了 Z < B'
+    ]
 
 ################################
 # Elements
@@ -110,7 +144,7 @@ class game
 
   getQuiz: ->
     $showContent.removeClass('in')
-    numbers = if @point < 9  then @random(4) else @random(13)
+    numbers = if @point < 1 then @random(3) else if @point < 3 then @random(8) else @random(13)
     quizStr = ''
     for i in [0..numbers] by 1
       quizStr += '反'
@@ -120,7 +154,7 @@ class game
       $showContent.addClass('in')
     , 300 )
   getComment: ->
-    comment = '點評：'
+    comment = "#{@point} 分點評："
     for key, value of settings.levels
       if @point < key
         comment += value[ Math.floor( Math.random() * value.length ) ]
@@ -131,7 +165,6 @@ class game
   showComment: ( comment ) ->
     $comment.html comment
   showTime: ( time ) ->
-    time = (time/100).toFixed(settings.fixed)
     $timestamp.text time
   random: (max) ->
     Math.ceil( Math.random() * max )
