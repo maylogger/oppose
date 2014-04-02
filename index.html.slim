@@ -1,0 +1,17 @@
+.intro.view
+  .container.text-center
+
+    .intro-text
+      h1.bigtext: span 反*n 服貿
+      p.bigtext
+        span 按下開始鈕後
+        span 30 秒內必須答出
+        span 接下來畫面的反*n服貿
+        span 到底是反、還是不反？分享你的分數
+      a.btn.btn-hg.btn-primary.btn-wide.play href="#" Start!!
+
+.playing.view
+  = render "game"
+
+.end.view
+  = render "score"

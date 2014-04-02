@@ -1,0 +1,193 @@
+$relative-font-sizing: false;
+
+@import "compass";
+
+.sec {
+  opacity: .3;
+  // animate
+  @include transition( transform 1s );
+  .end & {
+    @include transform( translateY(-500px) );
+  }
+  .status-end .end & {
+    @include transform( translateY(0) );
+  }
+}
+
+.intro {
+  .intro-text {
+    width: 80%;
+    max-width: 400px;
+    margin: 10% auto 0;
+  }
+  h1 {
+    line-height: 1.1;
+    margin: 0 0 15px;
+  }
+  p {
+    line-height: 1;
+    margin: 0 0 2em;
+    span {
+      margin-bottom: 15px;
+      &:nth-child(1) { opacity: 1 }
+      &:nth-child(2) { opacity: .8 }
+      &:nth-child(3) { opacity: .6 }
+      &:nth-child(4) { opacity: .4 }
+    }
+  }
+}
+
+.quiz {
+  position: absolute;
+  top: 45%;
+  left: 0;
+  width: 100%;
+  padding: 0 1em;
+  @include box-sizing(border-box);
+  span {
+    line-height: 1;
+    display: block;
+    margin-top: -.5em;
+    &.out {
+      visibility: hidden;
+      @include transform( scale(0) );
+    }
+    &.in {
+      visibility: visible;
+      @include transition( transform .1s );
+      @include transform( scale(1) );
+    }
+    // animate
+    @include transition( transform 2s 1s, opacity .3s 1s);
+    .end & {
+      @include transform( scale(0) rotate(-720deg)  );
+      opacity: 0;
+    }
+    .status-end .end & {
+      @include transform( scale(1) rotate(0deg) );
+      opacity: 1;
+    }
+  }
+}
+
+.answer {
+  position: absolute;
+  z-index: 3000;
+  bottom: 0px;
+  left: 0;
+  width: 100%;
+  @include padding-leader(1);
+  @include padding-trailer(1);
+  padding-bottom: 24px;
+  background: rgba(white,.75);
+  .btn + .btn {
+    margin-left: .5em;
+  }
+  // animate
+  @include transition( transform 1s );
+  .end & {
+    @include transform( translateY(500px) );
+  }
+  .status-end .end & {
+    @include transform( translateY(0) );
+  }
+}
+.score {
+  position: absolute;
+  z-index: 2001;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: rgba(#ccc,.1);
+  font-size: 24px;
+  line-height: 1.1;
+  padding: 5px 10px;
+}
+
+.glyphicon {
+  padding-right: 5px;
+  .btn & {
+    position: relative;
+    top: 3px;
+  }
+}
+
+.glyphicon-ok {
+  color: #39ca74;
+}
+
+.glyphicon-remove {
+  color: #e54d42;
+}
+
+// score
+
+
+
+// status
+
+html, body {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  -webkit-text-size-adjust: 100%
+}
+
+.view {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.intro {
+  @include transition( transform .3s );
+  @include transform( translateY(-100%) );
+  z-index: 0;
+}
+
+.playing {
+  @include transition( transform .3s, opacity .3s );
+  @include transform( scale(.7) );
+  opacity: 0;
+  z-index: 1;
+  background: white;
+}
+
+.end {
+  background: white;
+  z-index: 2;
+}
+
+.status-intro {
+  .intro {
+    @include transform( translateY(0) );
+  }
+  .playing {
+    visibility: hidden;
+  }
+  .end {
+    visibility: hidden;
+  }
+}
+
+.status-playing {
+  .playing {
+    visibility: visible;
+    @include transform( scale(1) );
+    opacity: 1;
+  }
+  .end {
+    visibility: hidden;
+  }
+}
+
+.status-end {
+  .playing {
+    visibility: hidden;
+  }
+  .end {
+    visibility: visible;
+  }
+}
