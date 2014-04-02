@@ -48,13 +48,12 @@ $relative-font-sizing: false;
     line-height: 1;
     display: block;
     margin-top: -.5em;
-
-    &.out {
+    .playing & {
       visibility: hidden;
       @include transform( scale(.5) );
       opacity: 0;
     }
-    &.in {
+    .playing &.in {
       visibility: visible;
       @include transition( transform .3s, opacity .3s );
       @include transform( scale(1) );
