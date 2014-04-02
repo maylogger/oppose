@@ -168,13 +168,15 @@ html, body {
 .end {
   background: white;
   z-index: 2;
+  overflow: hidden;
 }
 
 .gameover {
+  position: relative;
   background: #a00;
   z-index: 3;
   color: white;
-  top: 100%;
+  top: 150%;
   @include transition(top 1s ease-in );
   &.in {
     @include transition(0);
