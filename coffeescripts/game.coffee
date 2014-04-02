@@ -3,9 +3,8 @@
 ################################
 
 settings =
-  limitTime: 6000
-  countDown: 10
-  fixed: 2
+  limitTime: 60 #sec
+  countDown: 700 #millisecond
   levels:
     1: ['智商跟馬英九相同。']
     5: ['你的偷懶害立法院失守了', '白衫軍攻勢太強！<br>再玩一次！', '請注意務必逐題審查！', '快出門！<br>立法院需要你的支援！']
@@ -131,7 +130,6 @@ class game
   showComment: ( comment ) ->
     $comment.html comment
   showTime: ( time ) ->
-    time = (time/100).toFixed(settings.fixed)
     $timestamp.text time
   random: (max) ->
     Math.ceil( Math.random() * max )

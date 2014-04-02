@@ -3,9 +3,8 @@
     __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
 
   settings = {
-    limitTime: 6000,
-    countDown: 10,
-    fixed: 2,
+    limitTime: 60,
+    countDown: 700,
     levels: {
       1: ['智商跟馬英九相同。'],
       5: ['你的偷懶害立法院失守了', '白衫軍攻勢太強！<br>再玩一次！', '請注意務必逐題審查！', '快出門！<br>立法院需要你的支援！'],
@@ -187,7 +186,6 @@
     };
 
     game.prototype.showTime = function(time) {
-      time = (time / 100).toFixed(settings.fixed);
       return $timestamp.text(time);
     };
 
