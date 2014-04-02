@@ -1,5 +1,5 @@
 (function() {
-  var $body, $btnNo, $btnPlay, $btnYes, $comment, $gameover, $showContent, $showpoint, $timestamp, game,
+  var $body, $btnNo, $btnPlay, $btnYes, $comment, $gameover, $showContent, $showPoint, $timestamp, game,
     __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
 
   $.fn._bigtext = function() {
@@ -21,9 +21,9 @@
 
   $timestamp = $('.timestamp');
 
-  $showpoint = $('.showpoint');
-
   $comment = $('.comment');
+
+  $showPoint = $('.showpoint');
 
   $showContent = $('.show-content');
 
@@ -40,7 +40,7 @@
     }
 
     game.prototype.reset = function() {
-      this.time = 30;
+      this.time = 60;
       this.point = 0;
       this.is_playing = false;
       return this.showTime(this.time);
@@ -103,17 +103,17 @@
     game.prototype.countdown = function() {
       var _this = this;
 
-      if (!this.is_playing) {
-        return;
-      }
       if (this.time === 0) {
         return this.end();
       }
+      if (!this.is_playing) {
+        return;
+      }
       this.showTime(this.time);
       this.time--;
-      return setTimeout(function() {
+      return this.timer = setTimeout(function() {
         return _this.countdown();
-      }, 1000);
+      }, 500);
     };
 
     game.prototype.bingo = function() {
@@ -125,6 +125,7 @@
       this.toggleBodyClass('end');
       this.getComment();
       this.showPoint();
+      clearTimeout(this.timer);
       this.reset();
       return setTimeout(function() {
         return $gameover.removeClass('showGameOver');
@@ -194,7 +195,7 @@
     };
 
     game.prototype.showPoint = function() {
-      return $showpoint.text(this.point).parent()._bigtext();
+      return $showPoint.text(this.point).parent()._bigtext();
     };
 
     game.prototype.showComment = function(comment) {

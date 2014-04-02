@@ -4,13 +4,14 @@ $.fn._bigtext = ->
     $el.bigtext $el.data()
 
 $body        = $('body')
+
 $btnPlay     = $('.play')
 $btnYes      = $('.btn-yes')
 $btnNo       = $('.btn-no')
 
 $timestamp   = $('.timestamp')
-$showpoint   = $('.showpoint')
 $comment     = $('.comment')
+$showPoint   = $('.showpoint')
 $showContent = $('.show-content')
 $gameover    = $('.gameover')
 
@@ -20,7 +21,7 @@ class game
     @observe()
     @reset()
   reset: ->
-    @time       = 30
+    @time       = 60
     @point      = 0
     @is_playing = false
     @showTime @time
@@ -44,7 +45,7 @@ class game
     @toggleBodyClass 'play'
     @getQuiz()
     @countdown()
-    $gameover.addClass('showGameOver')
+    $gameover.addClass 'showGameOver'
   yes: =>
     return if not @is_playing
     if @is_anti then @end() else @bingo()
@@ -52,14 +53,13 @@ class game
     return if not @is_playing
     if @is_anti then @bingo() else @end()
   countdown: ->
-    return if not @is_playing
     return @end() if @time == 0
-
+    return if not @is_playing
     @showTime @time
     @time--
-    setTimeout( =>
+    @timer = setTimeout( =>
       @countdown()
-    , 1000)
+    , 500)
   bingo: ->
     @point++
     @getQuiz()
@@ -67,10 +67,12 @@ class game
     @toggleBodyClass 'end'
     @getComment()
     @showPoint()
+    clearTimeout @timer
     @reset()
     setTimeout( ->
       $gameover.removeClass('showGameOver')
     , 1000)
+
   getQuiz: ->
     $showContent.removeClass('in')
     numbers = if @point < 9  then @random(4) else @random(13)
@@ -125,7 +127,7 @@ class game
     @showComment comment
   ## functions ###########################################
   showPoint: ->
-    $showpoint.text(@point).parent()._bigtext()
+    $showPoint.text(@point).parent()._bigtext()
   showComment: ( comment ) ->
     $comment.text comment
   showTime: ( time ) ->
