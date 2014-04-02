@@ -2,18 +2,10 @@
   var $body, $btnNo, $btnPlay, $btnYes, $comment, $gameover, $showContent, $showPoint, $timestamp, game, settings,
     __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
 
-  $.fn._bigtext = function() {
-    return this.each(function() {
-      var $el;
-
-      $el = $(this);
-      return $el.bigtext($el.data());
-    });
-  };
-
   settings = {
-    limitTime: 60,
+    limitTime: 6000,
     countDown: 10,
+    fixed: 2,
     levels: {
       1: ['智商跟馬英九相同。'],
       5: ['你的偷懶害立法院失守了', '白衫軍攻勢太強！<br>再玩一次！', '請注意務必逐題審查！', '快出門！<br>立法院需要你的支援！'],
@@ -41,6 +33,15 @@
   $showContent = $('.show-content');
 
   $gameover = $('.gameover');
+
+  $.fn._bigtext = function() {
+    return this.each(function() {
+      var $el;
+
+      $el = $(this);
+      return $el.bigtext($el.data());
+    });
+  };
 
   game = (function() {
     function game() {
@@ -170,7 +171,7 @@
       for (key in _ref) {
         value = _ref[key];
         if (this.point < key) {
-          comment = value[Math.floor(Math.random() * value.length)];
+          comment += value[Math.floor(Math.random() * value.length)];
           break;
         }
       }
@@ -182,10 +183,11 @@
     };
 
     game.prototype.showComment = function(comment) {
-      return $comment.text(comment);
+      return $comment.html(comment);
     };
 
     game.prototype.showTime = function(time) {
+      time = (time / 100).toFixed(settings.fixed);
       return $timestamp.text(time);
     };
 
@@ -207,5 +209,7 @@
   })();
 
   new game();
+
+  console && console.clear();
 
 }).call(this);

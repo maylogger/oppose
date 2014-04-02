@@ -1,11 +1,11 @@
-$.fn._bigtext = ->
-  @.each ->
-    $el = $(@)
-    $el.bigtext $el.data()
+################################
+# Settings
+################################
 
 settings =
-  limitTime: 60
-  countDown: 660
+  limitTime: 6000
+  countDown: 10
+  fixed: 2
   levels:
     1: ['智商跟馬英九相同。']
     5: ['你的偷懶害立法院失守了', '白衫軍攻勢太強！<br>再玩一次！', '請注意務必逐題審查！', '快出門！<br>立法院需要你的支援！']
@@ -13,6 +13,10 @@ settings =
     15: ['「你們不配當中國人」語畢，哄堂大笑', '馬總統民調只有九趴，<br>你們是不是也是多數在霸凌少數', '先立法後答題', '辨識度堪稱糾察隊']
     20: ['林飛帆表示：陳為廷在我旁邊啦！', '你的分辨率太高，TVBS、中天都做不了假新聞...']
     999: ['你證明了 Z < B']
+
+################################
+# Elements
+################################
 
 $body        = $('body')
 
@@ -26,6 +30,11 @@ $showPoint   = $('.showpoint')
 $showContent = $('.show-content')
 $gameover    = $('.gameover')
 
+$.fn._bigtext = ->
+  @.each ->
+    $el = $(@)
+    $el.bigtext $el.data()
+
 class game
   constructor: ->
     $('.bigtext')._bigtext()
@@ -36,6 +45,11 @@ class game
     @point      = 0
     @is_playing = false
     @showTime @time
+
+  ################################
+  # Actions
+  ################################
+
   observe: ->
     $(document).on 'keydown', @keydown
     $btnPlay.on 'click', @play
@@ -64,6 +78,11 @@ class game
   no: =>
     return if not @is_playing
     if @is_anti then @bingo() else @end()
+
+  ################################
+  # Reflections
+  ################################
+
   countdown: ->
     return @end() if @time == 0
     return if not @is_playing
@@ -85,6 +104,10 @@ class game
       $gameover.removeClass('showGameOver')
     , 1000)
 
+  ################################
+  # Functions
+  ################################
+
   getQuiz: ->
     $showContent.removeClass('in')
     numbers = if @point < 9  then @random(4) else @random(13)
@@ -100,15 +123,15 @@ class game
     comment = '點評：'
     for key, value of settings.levels
       if @point < key
-        comment = value[ Math.floor( Math.random() * value.length ) ]
+        comment += value[ Math.floor( Math.random() * value.length ) ]
         break
     @showComment comment
-  ## functions ###########################################
   showPoint: ->
     $showPoint.text(@point).parent()._bigtext()
   showComment: ( comment ) ->
     $comment.html comment
   showTime: ( time ) ->
+    time = (time/100).toFixed(settings.fixed)
     $timestamp.text time
   random: (max) ->
     Math.ceil( Math.random() * max )
@@ -118,6 +141,9 @@ class game
         $body.removeClass('status-intro status-end').addClass('status-playing')
       when 'end'
         $body.removeClass('status-playing').addClass('status-end')
-new game()
 
-# console && console.clear()
+################################
+# Initialize
+################################
+new game()
+console && console.clear()
