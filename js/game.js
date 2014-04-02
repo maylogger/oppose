@@ -1,5 +1,5 @@
 (function() {
-  var $body, $btnNo, $btnPlay, $btnYes, $comment, $gameover, $showContent, $showPoint, $timestamp, game,
+  var $body, $btnNo, $btnPlay, $btnYes, $comment, $gameover, $showContent, $showPoint, $timestamp, game, settings,
     __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
 
   $.fn._bigtext = function() {
@@ -9,6 +9,11 @@
       $el = $(this);
       return $el.bigtext($el.data());
     });
+  };
+
+  settings = {
+    limitTime: 60,
+    countDown: 700
   };
 
   $body = $('body');
@@ -40,7 +45,7 @@
     }
 
     game.prototype.reset = function() {
-      this.time = 60;
+      this.time = settings.limitTime;
       this.point = 0;
       this.is_playing = false;
       return this.showTime(this.time);
@@ -75,6 +80,7 @@
       this.toggleBodyClass('play');
       this.getQuiz();
       this.countdown();
+      clearTimeout(this.gameroverTimer);
       return $gameover.addClass('showGameOver');
     };
 
@@ -113,7 +119,7 @@
       this.time--;
       return this.timer = setTimeout(function() {
         return _this.countdown();
-      }, 500);
+      }, settings.countDown);
     };
 
     game.prototype.bingo = function() {
@@ -127,7 +133,7 @@
       this.showPoint();
       clearTimeout(this.timer);
       this.reset();
-      return setTimeout(function() {
+      return this.gameroverTimer = setTimeout(function() {
         return $gameover.removeClass('showGameOver');
       }, 1000);
     };

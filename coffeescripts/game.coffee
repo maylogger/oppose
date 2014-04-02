@@ -3,6 +3,10 @@ $.fn._bigtext = ->
     $el = $(@)
     $el.bigtext $el.data()
 
+settings =
+  limitTime: 60
+  countDown: 700
+
 $body        = $('body')
 
 $btnPlay     = $('.play')
@@ -21,7 +25,7 @@ class game
     @observe()
     @reset()
   reset: ->
-    @time       = 60
+    @time       = settings.limitTime
     @point      = 0
     @is_playing = false
     @showTime @time
@@ -45,6 +49,7 @@ class game
     @toggleBodyClass 'play'
     @getQuiz()
     @countdown()
+    clearTimeout @gameroverTimer
     $gameover.addClass 'showGameOver'
   yes: =>
     return if not @is_playing
@@ -59,7 +64,7 @@ class game
     @time--
     @timer = setTimeout( =>
       @countdown()
-    , 500)
+    , settings.countDown)
   bingo: ->
     @point++
     @getQuiz()
@@ -69,7 +74,7 @@ class game
     @showPoint()
     clearTimeout @timer
     @reset()
-    setTimeout( ->
+    @gameroverTimer = setTimeout( ->
       $gameover.removeClass('showGameOver')
     , 1000)
 
