@@ -37,8 +37,10 @@ var randomText = function(){
   }
 };
 
+var main = null
+
 var startGame = function()  {
-  var main = setTimeout(function(){
+  main = setTimeout(function(){
     if ( initTime > 0 ){
       initTime = initTime - 1;
       $('.timestamp').html(initTime);
@@ -96,6 +98,7 @@ var endGame = function()  {
   point = 0;
   comment = "點評：";
   initTime = 30;
+  clearTimeout(main);
   $('.timestamp').html(initTime);
 };
 
@@ -119,6 +122,7 @@ $play = $('.play')
 
 $(document).on('keydown', function( e ){
   var key = e.which;
+  if( $('body').hasClass('status-end') ) return;
   switch( key ) {
     case 37: //left
       $no.trigger('click');
@@ -130,13 +134,8 @@ $(document).on('keydown', function( e ){
 })
 
 $play.on('click',function(){
-  if (initTime == 30){
-    game.init();
-    $('body').removeClass('status-intro status-end').addClass('status-playing')
-  }else{
-    initTime =0;
-    game.init();
-  }
+  game.init();
+  $('body').removeClass('status-intro status-end').addClass('status-playing')
 });
 
 $yes.on('click',function(){
