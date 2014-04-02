@@ -5,7 +5,7 @@ $.fn._bigtext = ->
 
 settings =
   limitTime: 60
-  countDown: 10
+  countDown: 660
   levels:
     1: ['智商跟馬英九相同。']
     5: ['你的偷懶害立法院失守了', '白衫軍攻勢太強！<br>再玩一次！', '請注意務必逐題審查！', '快出門！<br>立法院需要你的支援！']
@@ -107,7 +107,7 @@ class game
   showPoint: ->
     $showPoint.text(@point).parent()._bigtext()
   showComment: ( comment ) ->
-    $comment.text comment
+    $comment.html comment
   showTime: ( time ) ->
     $timestamp.text time
   random: (max) ->
