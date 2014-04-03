@@ -6,10 +6,11 @@
 
 .answer.text-center
   p.comment
-  a.btn.btn-lg.btn-primary.btn-wide href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fwww.oppose.tw" target="_blank"
-    span class="glyphicon glyphicon-share-alt"
-    | 分享成績
-
-  .btn.btn-lg.btn-inverse.btn-wide.play
+  .btn-group
+    a.btn.btn-lg.btn-info href="#" onclick="window.open('https://twitter.com/intent/tweet?text=' + encodeURIComponent( '我的糾察成績「' + $('.comment').text() + '」via 反^n 服貿' ) + '&url=http%3A%2F%2Foppose.tw', 'twitter_share_dialog', 'width=626,height=436'); return false;" target="_blank"
+      i.fui-twitter
+    a.btn.btn-lg.btn-info href="#" onclick="window.open('https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fwww.oppose.tw', 'facebook_share_dialog', 'width=626,height=436'); return false;" target="_blank"
+      i.fui-facebook
+  button.btn.btn-lg.btn-inverse.play
     span class="glyphicon glyphicon-refresh"
     | 重新審查
