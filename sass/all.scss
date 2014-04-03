@@ -3,10 +3,14 @@ $bg: #425b75;
 $color: #f7f9f9;
 
 @import "compass";
+@import "susy";
 
 .sec {
   @include backface-visibility(hidden);
   opacity: .3;
+  @include at-breakpoint(40em) {
+    padding-top: 3%;
+  }
   // animate
   @include transition( transform 1s );
   .end & {
@@ -18,10 +22,15 @@ $color: #f7f9f9;
 }
 
 .intro {
+  overflow: auto;
   .intro-text {
     width: 80%;
     max-width: 400px;
-    margin: 10% auto 0;
+    margin: 0 auto;
+    padding: 10% 0;
+    @media (max-height: 600px) {
+      padding-top: 24px 0;
+    }
   }
   h1 {
     line-height: 1.1;
@@ -64,11 +73,12 @@ $color: #f7f9f9;
       opacity: 1;
     }
     .end & {
-      @include transition( transform 2s 1s, opacity 2s 1s);
+      @include transition( 0 );
       @include transform( scale(0) rotate(-720deg)  );
       opacity: 0;
     }
     .status-end .end & {
+      @include transition( transform 2s 1s, opacity 2s 1s);
       @include transform( scale(1) rotate(0deg) );
       opacity: 1;
     }
@@ -84,9 +94,15 @@ $color: #f7f9f9;
   @include padding-leader(1);
   @include padding-trailer(1);
   padding-bottom: 24px;
+  @include at-breakpoint(40em) {
+    padding-bottom: 7%
+  }
   background: rgba($bg,.75);
   .btn + .btn {
     margin-left: .5em;
+  }
+  .btn-group .btn {
+    margin-left: 0;
   }
   .playing & {
     .btn-yes .glyphicon {
@@ -98,18 +114,29 @@ $color: #f7f9f9;
   }
   .end & {
     .btn.btn-inverse {
+      margin-left: .5em;
       background: darken($bg, 20%);
       &:hover {
         background: darken($bg, 15%);
       }
     }
+    .comment {
+      @include at-breakpoint(40em) {
+        font-size: 22px;
+      }
+    }
+    .btn-group .btn:last-child {
+      border-left: 2px solid darken(#3a99d8, 10%);
+    }
   }
   // animate
-  @include transition( transform .5s 3s );
+
   .end & {
+    @include transition(0);
     @include transform( translateY(500px) );
   }
   .status-end .end & {
+    @include transition( transform .5s 2s );
     @include transform( translateY(0) );
   }
 }
@@ -192,7 +219,7 @@ html, body {
   z-index: 3;
   color: white;
   top: 150%;
-  @include transition(top 1s ease-in );
+  @include transition(top .5s ease-in );
   &.showGameOver {
     @include transition(0);
     top: 0%;
