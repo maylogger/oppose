@@ -35,15 +35,18 @@ $color: #f7f9f9;
   h1 {
     line-height: 1.1;
     margin: 0 0 15px;
+    font-family: w8, sans-serif;
+    .jf-active & { font-weight: normal; }
   }
   p {
+    font-family: w3, sans-serif;
     line-height: 1;
     margin: 0 0 2em;
     span {
       margin-bottom: 15px;
-      &:nth-child(1) { opacity: .5 }
+      &:nth-child(1) { opacity: .5; font-family: w8, sans-serif; }
       &:nth-child(2) { opacity: .5 }
-      &:nth-child(3) { opacity: .7 }
+      &:nth-child(3) { opacity: .7; font-family: w3, sans-serif; }
       &:nth-child(4) { opacity: .8 }
     }
   }
@@ -65,6 +68,7 @@ $color: #f7f9f9;
       visibility: hidden;
       @include transform( scale(.5) );
       opacity: 0;
+      font-family: w8, sans-serif;
     }
     .playing &.in {
       visibility: visible;
